@@ -1,0 +1,23 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "charliermarsh.ruff",
+    "ms-toolsai.jupyter",
+    "ms-toolsai.jupyter-keymap",
+    "ms-toolsai.jupyter-renderers",
+    "ms-toolsai.vscode-jupyter-cell-tags",
+    "ms-toolsai.vscode-jupyter-slideshow",
+    "meta.pyrefly",
+    "tamasfe.even-better-toml",
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+    "ms-vscode-remote.remote-containers"
+  ],
+  "unwantedRecommendations": [
+    "ms-python.vscode-pylance",
+    "ms-python.mypy-type-checker",
+    "ms-python.black-formatter",
+    "ms-python.flake8",
+    "ms-python.isort"
+  ]
+}

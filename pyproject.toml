@@ -1,59 +1,52 @@
-[build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "llms-from-scratch"
 version = "1.0.18"
 description = "Implement a ChatGPT-like LLM in PyTorch from scratch, step by step"
 readme = "README.md"
-requires-python = ">=3.10,<3.14"
+requires-python = ">=3.11,<3.14"
+
 dependencies = [
-  'torch>=2.6; python_version >= "3.13"',
-  "torch>=2.2.2,<2.6; sys_platform == 'darwin' and platform_machine == 'x86_64' and python_version < '3.12'",
-  "torch>=2.2.2; sys_platform == 'darwin' and platform_machine == 'arm64' and python_version < '3.12'",
-  "torch>=2.2.2; sys_platform == 'linux' and python_version < '3.12'",
-  "torch>=2.2.2; sys_platform == 'win32' and python_version < '3.12'",
-
-  "tensorflow>=2.16.2; sys_platform == 'darwin' and platform_machine == 'x86_64'",
-  "tensorflow>=2.18.0; sys_platform == 'darwin' and platform_machine == 'arm64'",
-  "tensorflow>=2.18.0; sys_platform == 'linux'",
-  "tensorflow>=2.18.0; sys_platform == 'win32'",
-
-  "jupyterlab>=4.0",
-  "tiktoken>=0.5.1",
-  "matplotlib>=3.7.1",
-  "tqdm>=4.66.1",
-  "numpy>=1.26",
-  "pandas>=2.2.1",
-  "pip>=25.0.1",
-  "pytest>=8.3.5",
+    "ipykernel==7.1.0",
+    "tiktoken==0.12.0",
+    "matplotlib==3.10.7",
+    "tqdm==4.67.1",
+    "numpy==2.3.5",
+    "pandas==2.3.3",
+    "tokenizers==0.22.1",
+    "safetensors==0.7.0",
 ]
 
-[tool.uv.sources]
-llms-from-scratch = { workspace = true }
+[project.optional-dependencies]
+macos = ["torch>=2.9.0", "torchvision>=0.24.0"]
 
 [dependency-groups]
-dev = [
-    "build>=1.2.2.post1",
-    "twine>=6.1.0",
-    "tokenizers>=0.22.0",
-    "safetensors>=0.6.2",
+test = ["pytest==9.0.1"]
+lint = ["ruff==0.14.6", "pyrefly==0.42.0"]
+
+[tool.pyrefly]
+project_includes = ["**/*.py"]
+project_excludes = [
+    "**/node_modules",
+    "**/.git",
+    "**/.mypy_cache",
+    "**/.pytest_cache",
+    "**/.venv",
+    "**/__pycache__",
+    "**/*.pyi",
 ]
+python_version = "3.12"
 
 [tool.ruff]
-line-length = 140
+line-length = 88
 
 [tool.ruff.lint]
-exclude = [".venv"]
-ignore = [
-    "C406", "E226", "E402", "E702", "E703",
-    "E722", "E731", "E741"
+exclude = [
+    ".git",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__",
+    "*.pyi",
 ]
-
-# `llms_from_scratch` PyPI package
-[tool.setuptools]
-package-dir = {"" = "pkg"}
-
-[tool.setuptools.packages.find]
-where = ["pkg"]
+ignore = ["C406", "E226", "E402", "E702", "E703", "E722", "E731", "E741"]
+select = ["B", "C", "E", "F", "W"]

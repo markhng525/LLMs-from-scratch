@@ -1,0 +1,9 @@
+[tools]
+python = '3.12.3'
+uv = '0.8.19'
+
+[tasks.sync]
+run = "uv sync --extra macos"
+
+[env]
+UV_PROJECT_ENVIRONMENT = ".venv.darwin-arm64"
